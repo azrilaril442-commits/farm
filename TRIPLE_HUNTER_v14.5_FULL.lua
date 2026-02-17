@@ -1,4 +1,4 @@
-print("🌶️🥤🤠☕️✨📝😂☢️⛏️🌟🐱 TRIPLE+ HUNTER v14.5 - MINI UI + 11 TARGETS!")
+print("🌶️🥤🤠☕️✨📝😂☢️⛏️🌟🐱 TRIPLE+ HUNTER v14.6 - MINI UI + 11 TARGETS + RADIOACTIVE!")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = workspace
@@ -32,7 +32,7 @@ local targets = {
     {model = ReplicatedStorage.Assets.Models.Eggs:WaitForChild("06Divine").meowl, name="meowl", emoji="🐱", color=Color3.new(0.9,0.7,0.8)}
 }
 
-print("✅ " .. #targets .. " Targets + AUTO PENS - MINI UI MODE!")
+print("✅ " .. #targets .. " Targets + AUTO PENS + RADIOACTIVE - MINI UI MODE!")
 
 -- STATE
 local hunting = false
@@ -46,15 +46,16 @@ local lastCheck = 0
 local CHECK_INTERVAL = 0.1
 local PEN_COLLECT_INTERVAL = 5
 
--- VFX CHECK
+-- VFX CHECK - UPDATED WITH RADIOACTIVE, NO GOLD
 local function checkVFXFast(targetName)
     for i = 1, 10 do
         local slot = conveyor.Objects:FindFirstChild(tostring(i))
         if slot and slot:FindFirstChild(targetName) then
             local egg = slot[targetName]
-            if egg:FindFirstChild("tier-vfx-Gold") then return "GOLD"
+            if egg:FindFirstChild("tier-vfx-Radioactive") then return "RADIOACTIVE"  -- NEW!
             elseif egg:FindFirstChild("tier-vfx-Diamond") then return "DIAMOND"
             elseif egg:FindFirstChild("tier-vfx-Rainbow") then return "RAINBOW"
+            -- GOLD REMOVED AS REQUESTED
             end
         end
     end
@@ -138,7 +139,7 @@ end
 -- CREATE MINI UI
 local function createUI()
     screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "TripleHunterV145Mini"
+    screenGui.Name = "TripleHunterV146Mini"
     screenGui.ResetOnSpawn = false
     screenGui.Parent = playerGui
 
@@ -173,12 +174,12 @@ local function createUI()
     closeBtn.Font = Enum.Font.GothamBold
     Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0, 6)
 
-    -- TITLE
+    -- TITLE - UPDATED VERSION
     local title = Instance.new("TextLabel", mainFrame)
     title.Size = UDim2.new(1, -60, 0, 30)
     title.Position = UDim2.new(0, 8, 0, 2)
     title.BackgroundTransparency = 1
-    title.Text = "🌶️🥤🤠☕️✨📝😂☢️ v14.5 MINI"
+    title.Text = "🌶️🥤🤠☕️✨📝😂☢️☢️ v14.6 RADIOACTIVE"
     title.TextColor3 = Color3.new(1, 0.3, 0)
     title.TextScaled = true
     title.Font = Enum.Font.GothamBold
@@ -222,7 +223,7 @@ local function createUI()
     liveScan.Size = UDim2.new(1, -16, 0, 18)
     liveScan.Position = UDim2.new(0, 8, 0, 205)
     liveScan.BackgroundTransparency = 1
-    liveScan.Text = "Lag Free Scan Ready..."
+    liveScan.Text = "Radioactive Scan Ready..."
     liveScan.TextColor3 = Color3.new(1, 1, 0)
     liveScan.TextScaled = true
     liveScan.Font = Enum.Font.Gotham
@@ -271,7 +272,7 @@ local function createUI()
     local miniIcon = Instance.new("TextLabel", miniFrame)
     miniIcon.Size = UDim2.new(1, 0, 0.6, 0)
     miniIcon.BackgroundTransparency = 1
-    miniIcon.Text = "🌶️🤠🐱"
+    miniIcon.Text = "🌶️🤠☢️🐱"
     miniIcon.TextColor3 = Color3.new(1,1,1)
     miniIcon.TextScaled = true
     miniIcon.Font = Enum.Font.GothamBold
@@ -324,7 +325,7 @@ local function createUI()
             status.TextColor3 = Color3.new(1, 1, 0)
             huntBtn.Text = "⏹ STOP"
             huntBtn.BackgroundColor3 = Color3.new(0.9, 0.2, 0.1)
-            showBubble("🚀 " .. #targets .. " HUNT!", 2)
+            showBubble("🚀 " .. #targets .. " RADIOACTIVE HUNT!", 2)
             
             spawnThread = task.spawn(function()
                 while hunting do spawnEgg(); task.wait(0.3) end
@@ -402,12 +403,13 @@ end
 
 createUI()
 game.StarterGui:SetCore("SendNotification", {
-    Title = "🌶️🥤🤠☕️✨📝😂☢️ v14.5 MINI UI",
-    Text = "11 Targets + Auto Pens - Compact Mode!",
+    Title = "🌶️🥤🤠☕️✨📝😂☢️ v14.6 MINI UI",
+    Text = "11 Targets + Auto Pens + RADIOACTIVE (No Gold)!",
     Duration = 6
 })
-print("✅ v14.5 MINI UI - 320x380px - READY!")
--- DRAG FUNCTION - Buat mainFrame bisa digerakkan
+print("✅ v14.6 MINI UI - RADIOACTIVE SCAN - READY!")
+
+-- DRAG FUNCTION
 local dragging = false
 local dragStart = nil
 local startPos = nil
@@ -438,14 +440,14 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
     end
 end)
 
--- ANTI-AFK (Bypass kick 20 menit)
+-- ANTI-AFK
 spawn(function()
     while true do
         game:GetService("Players").LocalPlayer.Idled:Connect(function()
             game:GetService("VirtualUser"):ClickButton2(Vector2.new())
         end)
-        task.wait(1)  -- Loop aman
+        task.wait(1)
     end
 end)
 
-print("✅ ANTI-AFK AKTIF - No more kicks!")
+print("✅ ANTI-AFK + RADIOACTIVE SCAN AKTIF!")
