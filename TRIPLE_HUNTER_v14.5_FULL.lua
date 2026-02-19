@@ -14,8 +14,8 @@ local head = character:WaitForChild("Head")
 -- PATHS
 local spawnRemote = ReplicatedStorage["shared/network@GlobalFunctions"].SpawnEggs
 local collectPenRemote = ReplicatedStorage["shared/network@GlobalFunctions"].CollectPenEarnings
-local conveyor = Workspace.Farms.nastartame03.Components.Conveyor
-local pensFolder = Workspace.Farms.nastartame03.Components.Pens
+local conveyor = Workspace.Farms.nastarfarem002.Components.Conveyor
+local pensFolder = Workspace.Farms.nastarfarem002.Components.Pens
 
 -- TARGET MODELS - 11 TARGETS
 local targets = {
